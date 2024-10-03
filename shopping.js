@@ -1,25 +1,27 @@
 
   class shoppingList {
-    _ListCode;
+   // _ListCode;
     
     constructor(ListCode){
-      this._ListCode = ListCode;
+      //this._ListCode = ListCode;
       this.shoppingList = [];
     }
 
     addItem(shoppingItem) {
       this.shoppingList.push(shoppingItem)
+      console.log("Item has been added to list")
       return this.shoppingList.length;
   }
-    removeItem(shoppingItem) {
-      this.shoppingList.splice(shoppingItem[0], 1)
-      return this.shoppingList.length;
-  }
+
+  removeItem(itemName) {
+    this.shoppingList = this.shoppingList.filter(item => item.itemName !== itemName);
+    return this.shoppingList.length;
+}
     getNumItems() {
-       return this.shoppingList.length;
+       return `Number of items on the list are: ${this.shoppingList.length}`;
     }
     getListOfItems() {
-        return this.shoppingList;
+        return this.shoppingList.map(item => item.itemName);
     }
   
   }
@@ -50,7 +52,9 @@
 
   }
   const bread = new shoppingItem("bread", 7);
- const list1 = new shoppingList ("757")
-  list1.addItem('bread')
+  const eggs = new shoppingItem("eggs", 12);
+ const list1 = new shoppingList ()
+  list1.addItem(bread)
+  list1.addItem(eggs)
 
-  console.log(list1)
+  console.log(list1.getListOfItems())
